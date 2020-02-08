@@ -1,59 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.nexture.ojt.dao.EmployeeMapper">
 	<select id="login" resultType="Int" parameterType="Map">
-    	select 
-    		COUNT(*) 
-    	from 
-    		employee
-    	where 
-    		EM_NUMBER = #{EM_number} and password = #{password}
-	</select> 
-   	
-   	<insert id="signup" parameterType="EmployeeDTO">
-   	Insert into employee(
-   		NAME,
-   		EM_NUMBER,
-   		PASSWORD,
-   		PHONE,
-   		ADDRESS,
-   		PHONE_2,
-   		BIRTH,
-   		ADDRESS_2,
-   		ENTRYDAY,
-   		HIRE_TYPE) 
-   	VALUES(
-   		#{name},
-   		EMP_SEQ.NEXTVAL,
-   		#{birth},
-   		#{phone},
-   		#{address},
-   		#{phone2},
-   		#{birth},
-   		#{address2},
-   		#{entryday},
-   		#{hire_type}
-   		)
-   	</insert>
-   	
-   	<select id="selectEmployee" resultType="EmployeeDTO" parameterType="String">
-   	select 
-   		*
-   	From 
-   		Employee
-   	where Em_number = #{em_number}
-   	</select>
-   	
-   	<select id="listEmployee" resultType="EmployeeDTO">
-   	select
-   	    *
-   	from
-   		employee
-   	where
-   		authority &lt; 1
- 
-   	</select>
-   	
+		select
+		COUNT(*)
+		from
+		employee
+		where
+		EM_NUMBER = #{EM_number} and password =
+		#{password}
+	</select>
+
+	<insert id="signup" parameterType="EmployeeDTO">
+		Insert into employee(
+		NAME,
+		EM_NUMBER,
+		PASSWORD,
+		PHONE,
+		ADDRESS,
+		PHONE2,
+		BIRTH,
+		ADDRESS2,
+		entryday,
+		HIRE_TYPE)
+		VALUES(
+		#{name},
+		EMP_SEQ.NEXTVAL,
+		#{birth},
+		#{phone},
+		#{address},
+		#{phone2},
+		#{birth},
+		#{address2},
+		#{entryday},
+		#{hire_type}
+		)
+	</insert>
+
+	<select id="selectEmployee" resultType="EmployeeDTO"
+		parameterType="String">
+		select
+		NAME,
+		EM_NUMBER,
+		PASSWORD,
+		PHONE,
+		ADDRESS,
+		PHONE2,
+		BIRTH,
+		ADDRESS2,
+		to_char(entryday,'yyyy-mm-dd') as entryday,
+		HIRE_POSITION,
+		HIRE_TYPE,
+		STATUS,
+		AUTHORITY
+		From
+		Employee
+		where Em_number =
+		#{em_number}
+	</select>
+
+	<select id="listEmployee" resultType="EmployeeDTO">
+		select
+		NAME,
+		EM_NUMBER,
+		PASSWORD,
+		PHONE,
+		ADDRESS,
+		PHONE2,
+		BIRTH,
+		ADDRESS2,
+		to_char(entryday,'yyyy-mm-dd') as entryday,
+		HIRE_POSITION,
+		HIRE_TYPE,
+		STATUS,
+		AUTHORITY
+		from
+		employee
+		where
+		authority &lt; 1
+
+	</select>
+
 
 </mapper>

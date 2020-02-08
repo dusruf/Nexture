@@ -25,12 +25,7 @@
 			</tr>
 			<tr>
 				<th>電話番号</th>
-				<td><select name="phone" id="phone1">
-						<option value="010" selected="selected">010</option>
-						<option value="016">016</option>
-						<option value="017">017</option>
-				</select> - <input type="text" id="phone2" size="5" maxlength="4"> -
-					<input type="text" id="phone3" size="5" maxlength="4"></td>
+				<td><input type="text" name="phone" id="phone"placeholder="00*-000*-0000" maxlength="13"></td>
 			</tr>
 			<tr>
 				<th>住所</th>
@@ -38,14 +33,7 @@
 			</tr>
 			<tr>
 				<th>本家の連絡先</th>
-				<td><select name="phone2" id="phone2_1">
-						<option value="02" selected="selected">02</option>
-						<option value="010">010</option>
-						<option value="031">031</option>
-				</select> - 
-				<input type="text" id="phone2_2" size="5"maxlength="4">
-					 -
-				<input type="text" id="phone2_3" size="5" maxlength="4"></td>
+<td>		<input type="text" name="phone2" id="phone2"placeholder="00*-000*-0000" maxlength="13"></td>
 			</tr>
 			<tr>
 				<th>本家の住所</th>
@@ -70,6 +58,53 @@
 			value="リセット"></input> <input type="button" value="戻る"
 			onclick="location.href='/ojt'" />
 	</form>
+<script type="text/javascript">
+var autoHypenPhone = function(str){
+    str = str.replace(/[^0-9]/g, '');
+    var tmp = '';
+    if( str.length < 4){
+        return str;
+    }else if(str.length < 7){
+        tmp += str.substr(0, 3);
+        tmp += '-';
+        tmp += str.substr(3);
+        return tmp;
+    }else if(str.length < 11){
+        tmp += str.substr(0, 3);
+        tmp += '-';
+        tmp += str.substr(3, 3);
+        tmp += '-';
+        tmp += str.substr(6);
+        return tmp;
+    }else{              
+        tmp += str.substr(0, 3);
+        tmp += '-';
+        tmp += str.substr(3, 4);
+        tmp += '-';
+        tmp += str.substr(7);
+        return tmp;
+    }
+
+    return str;
+}
+
+
+var phone = document.getElementById('phone');
+var phone2 = document.getElementById('phone2');
+
+phone2.onkeyup = function(){
+	console.log(this.value);
+	this.value = autoHypenPhone( this.value ) ; 
+}
+
+
+phone.onkeyup = function(){
+console.log(this.value);
+this.value = autoHypenPhone( this.value ) ;  
+}
+
+</script>
+	
 </body>
 
 

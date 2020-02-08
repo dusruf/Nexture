@@ -29,15 +29,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String EM_number,String password,HttpSession session,Model model) {
-		if(repo.login(EM_number, password)==1) {
-			EmployeeDTO temp = repo.selectEmployee(EM_number);
+	public String login(EmployeeDTO employee,HttpSession session,Model model) {
+		if(repo.login(employee.getEM_number(), employee.getPassword())==1) {
+			EmployeeDTO temp = repo.selectEmployee(employee.getEM_number());
 			List<EmployeeDTO>list = repo.listEmployee();
 			session.setAttribute("name", temp.getName());
 			session.setAttribute("id", temp.getEM_number());
 			session.setAttribute("authority", temp.getAuthority());
-			model.addAttribute("employee", list);
-			return "home";
+				if(Integer.parseInt((String) session.getAttribute("authority"))==1) {
+					return "redirect:/manage";
+				}else {
+					model.addAttribute("employee", temp);
+					return "home";
+				}
 		}
 		return "login";
 	}
@@ -54,12 +58,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
-	public String signup2(EmployeeDTO employee,HttpSession session,Model model) {
+	public String signup2(EmployeeDTO employee) {
 		repo.signup(employee);
-		session.setAttribute("name", employee.getName());
-		session.setAttribute("id", employee.getEM_number());
-		session.setAttribute("authority", 0);
-		return "home";
+		System.out.println();
+		return "redirect:/manage";
 	}
+	
+	@RequestMapping(value = "manage", method = RequestMethod.GET)
+	public void manage(Model model) {
+		List<EmployeeDTO> list = repo.listEmployee();
+		model.addAttribute("employee", list);
+	}
+
+	@RequestMapping(value = "pw_change", method = RequestMethod.GET)
+	public String pw_change() {
+		return "pw_change";
+	}
+	
 	
 }

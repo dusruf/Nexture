@@ -1,0 +1,50 @@
+@charset "UTF-8";
+body{
+	margin-top: 100px;
+	margin-bottom:30px;
+	line-height: 1.6
+}
+.container{
+	width: 300px;
+	margin: 0 auto;
+	border: solid;
+	background-color:E2E2E2;
+	border-color:#004680;
+	border-radius: 25px;
+	padding-left: 30px;
+	padding-top:20px;
+}
+
+
+
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	border-radius: 25px 25px 0px 0px;
+	background: #ededed;
+	color: #222;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.tab-content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current{
+	border-radius: 0px 25px 25px;
+	display: inherit;
+}

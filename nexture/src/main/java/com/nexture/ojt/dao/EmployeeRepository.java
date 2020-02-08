@@ -32,7 +32,8 @@ public class EmployeeRepository {
 	
 	public EmployeeDTO selectEmployee(String em_number) {
 		EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
-		return mapper.selectEmployee(em_number);
+		EmployeeDTO temp = mapper.selectEmployee(em_number);
+		return temp;
 	}
 	
 	public List<EmployeeDTO>listEmployee(){
