@@ -8,9 +8,9 @@
 </head>
 <body>
 	<div id="box1" align="center">
-	<font style="font-size: 25px;font-width:bold">社員管理プログラム</font>
+		<font style="font-size: 25px; font-width: bold">社員管理プログラム</font>
 	</div>
-	
+
 	<div class="container">
 		<form action="login" method="POST">
 			<table>
@@ -25,7 +25,8 @@
 						id="password"></td>
 				</tr>
 			</table>
-			<input type="submit" value="ログイン">
+			<input type="submit" value="ログイン"> 
+			<br><font style="font-size: 7px;color: gray;">"パスワードの基本設定は生年月日です。</font>
 		</form>
 	</div>
 </body>

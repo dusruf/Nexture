@@ -17,16 +17,18 @@
 			</tr>
 			<tr>
 				<th>パスワード再入力</th>
-				<td><input type="password" name="password" id="pw2" onkeyup="pw_checking()"></td>
+				<td><input type="password" id="pw2" onkeyup="pw_checking()"></td>
 			</tr>
 			<tr>
 			<td id="result"></td>
 			</tr>
 		</table>
-		<input type="submit" value="変更" style="width: 100px;">
+		<input type="button" value="変更" onclick="pw_change()" size="100px;">
 	</form>
 	
 	</div>
+<script src="resources/jquery-3.4.1.js"></script>
+	
 <script type="text/javascript">
 window.onkeyup = "pw_checking()"
 
@@ -56,7 +58,28 @@ function pw_checking2(){
 		return true;
 	}
 }
+function pw_change(){
 	
+	if(pw_checking2()==true){
+		if(pw_checking()==true){
+			$.ajax({
+			       type: "POST",
+			       url: "pw_change.do",
+			       data: {"password":$('#pw1').val()},
+			         success: function (abc) {
+			            window.close();
+			            alert("変更されました")
+			        }, error: function (jqXHR, textStatus, errorThrown) {
+			          alert(jqXHR + ' ' + textStatus.msg);
+			       }
+			}); 
+		}
+	}
+	
+	
+	
+	
+}
 
 
 </script>

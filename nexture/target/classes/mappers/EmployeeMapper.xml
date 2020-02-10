@@ -83,5 +83,37 @@
 
 	</select>
 
+<update id="pwChange" parameterType="Map">
+	update 
+		Employee 
+	set 
+		password = #{password}
+	where
+		EM_number = #{em_number}
+</update>
+
+<delete id="delete" parameterType="String">
+	DELETE FROM
+		EMPLOYEE
+	WHERE
+		EM_number=#{em_number}
+</delete>
+
+<update id="infoChange" parameterType="EmployeeDTO">
+update
+		Employee
+	set
+		NAME = #{name},
+		PHONE = #{phone},
+		PHONE2 = #{phone2},
+		ADDRESS =#{address},
+		ADDRESS2 = #{address2},
+		Hire_type = #{hire_type},
+		Hire_position = #{hire_position}
+	where
+		EM_number = #{EM_number}
+</update>
+
+
 
 </mapper>

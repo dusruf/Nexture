@@ -11,4 +11,7 @@ public interface EmployeeMapper {
 	int signup(EmployeeDTO employee);
 	EmployeeDTO selectEmployee(String em_number);
 	List<EmployeeDTO>listEmployee();
+	int pwChange(Map<String,String> map);
+	int delete(String em_number);
+	int infoChange(EmployeeDTO employee);
 }

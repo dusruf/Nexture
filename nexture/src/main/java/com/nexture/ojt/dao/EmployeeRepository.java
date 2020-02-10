@@ -41,4 +41,22 @@ public class EmployeeRepository {
 		return mapper.listEmployee();
 	}
 	
+	public int pwChange(String password,String EM_number) {
+		EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+		Map<String,String>map = new HashMap<>();
+		map.put("password", password);
+		map.put("em_number", EM_number);
+		return mapper.pwChange(map);
+	}
+	
+	public int delete(String em_number) {
+		EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+		return mapper.delete(em_number);
+	}
+	
+	public int infoChagne(EmployeeDTO employee) {
+		EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+		return mapper.infoChange(employee);
+	}
+	
 }
